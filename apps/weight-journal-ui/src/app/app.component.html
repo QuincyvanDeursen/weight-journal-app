@@ -1,2 +1,66 @@
-<weight-journal-app-nx-welcome></weight-journal-app-nx-welcome>
-<router-outlet></router-outlet>
+<!-- toolbar -->
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row>
+    <button (click)="drawer.toggle()" mat-icon-button aria-label="menu-icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Weight Journal</span>
+    <span class="spacer"></span>
+    <button class="login-button" mat-raised-button>
+      <mat-icon>account_circle</mat-icon> Login
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- sidenav -->
+<mat-drawer-container class="drawer-container">
+  <!-- sidenav content-->
+  <mat-drawer #drawer mode="over" opened="false" class="drawer">
+    <mat-list class="list mx-3">
+      <mat-list-item class="list-item my-2">
+        <a mat-button class="drawer-button" routerLink="/home"
+          ><mat-icon>dashboard</mat-icon>Dashboard</a
+        >
+      </mat-list-item>
+      <mat-list-item class="list-item my-2">
+        <a mat-button class="drawer-button" routerLink="/home"
+          ><mat-icon>trending_up</mat-icon>Trackers</a
+        >
+      </mat-list-item>
+      <mat-list-item class="list-item my-2">
+        <a mat-button class="drawer-button" color="white" routerLink="/home"
+          ><mat-icon>person</mat-icon>Account</a
+        >
+      </mat-list-item>
+    </mat-list>
+
+    <div class="d-flex flex-column align-items-center" style="min-height: 65%">
+      <div class="mt-auto text-center">
+        <h6 class="text-white">Make</h6>
+        <h6 class="text-white">
+          <span class="health-label">Health</span>
+        </h6>
+        <h6 class="text-white">your Priority</h6>
+      </div>
+
+      <div class="heart-rate mx-4">
+        <svg>
+          <polyline
+            fill="none"
+            stroke="#02d36f"
+            stroke-width="3"
+            stroke-miterlimit="10"
+            points="0,45.486 38.514,45.486 44.595,33.324 50.676,45.486 57.771,45.486 62.838,55.622 71.959,9 80.067,63.729 84.122,45.486 97.297,45.486 103.379,40.419 110.473,45.486 150,45.486"
+          />
+        </svg>
+        <div class="fade-in"></div>
+        <div class="fade-out"></div>
+      </div>
+    </div>
+  </mat-drawer>
+  <!-- main content -->
+  <mat-drawer-content class="main-content">
+    <div class="container p-5">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

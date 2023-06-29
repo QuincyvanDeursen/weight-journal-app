@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/scss/bootstrap';
+
+//Use these colors in the styling of the app
+$green: #05e680;
+$dark-green: #009938;
+
+$blue: #29264f;
+$dark-blue: #030030;
+
+$red: #660000;
+$dark-red: #380000;
+
+$orange: #e69138;
+$dark-orange: #d56217;
+
+$white: #ffffff;
+$light-grey: #343434;
+$grey: #1d1d1d;
+$black: #000000;
+
+//styling
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: $grey;
+}

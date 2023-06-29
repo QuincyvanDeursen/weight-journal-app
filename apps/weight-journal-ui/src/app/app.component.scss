@@ -1,0 +1,100 @@
+.drawer-container {
+  overflow: auto;
+  background: #1a1a1a;
+}
+
+.main-content {
+  min-height: 100vh;
+  background: #1a1a1a;
+}
+
+.drawer {
+  background: #141414 89%;
+  border-right-width: 2px;
+  border-right-style: solid;
+  border-image: linear-gradient(to bottom, #030030, #02d36f) 1;
+}
+
+mat-list-item {
+  background: #1b1b1b;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.drawer-button {
+  color: white !important;
+  background: #1b1b1b !important;
+}
+
+.login-button {
+  color: white !important;
+  background: #141414 89% !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: (#02d36f);
+}
+
+.toolbar {
+  background: #000000;
+  color: white;
+}
+
+.health-label {
+  color: #02d36f;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+//heart rate
+.heart-rate {
+  width: 150px;
+  height: 73px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fade-in {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #141414;
+  top: 0;
+  right: 0;
+  animation: heartRateIn 4.5s linear infinite;
+}
+
+.fade-out {
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  top: 0;
+  left: -120%;
+  animation: heartRateOut 4.5s linear infinite;
+  background: #141414;
+}
+
+@keyframes heartRateIn {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes heartRateOut {
+  0% {
+    left: -120%;
+  }
+  30% {
+    left: -120%;
+  }
+  100% {
+    left: 0;
+  }
+}

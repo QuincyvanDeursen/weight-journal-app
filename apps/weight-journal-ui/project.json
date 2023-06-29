@@ -19,7 +19,10 @@
           "apps/weight-journal-ui/src/favicon.ico",
           "apps/weight-journal-ui/src/assets"
         ],
-        "styles": ["apps/weight-journal-ui/src/styles.scss"],
+        "styles": [
+          "apps/weight-journal-ui/src/styles.scss",
+          "apps/weight-journal-ui/src/theme.scss"
+        ],
         "scripts": []
       },
       "configurations": {
