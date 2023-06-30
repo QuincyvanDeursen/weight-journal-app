@@ -1,0 +1,64 @@
+{
+  "name": "weight-journal-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/weight-journal-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/weight-journal-api",
+        "main": "apps/weight-journal-api/src/main.ts",
+        "tsConfig": "apps/weight-journal-api/tsconfig.app.json",
+        "assets": ["apps/weight-journal-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/weight-journal-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "weight-journal-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "weight-journal-api:build:development"
+        },
+        "production": {
+          "buildTarget": "weight-journal-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/weight-journal-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/weight-journal-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
