@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 
 import { AppService } from './app.service';
+import { APIResponse } from './shared/api.response';
 
 @Controller()
 export class AppController {
@@ -8,6 +9,7 @@ export class AppController {
 
   @Get()
   getData() {
-    return this.appService.getData();
+    const data = this.appService.getData();
+    return APIResponse.success('Data retrieved successfully', data);
   }
 }
