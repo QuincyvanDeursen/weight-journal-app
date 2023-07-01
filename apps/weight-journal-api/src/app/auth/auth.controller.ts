@@ -10,6 +10,9 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { HasRoles } from './roles.decorator';
+import { Role } from '@weight-journal-app/domain';
+import { RolesGuard } from './roles.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -26,6 +29,6 @@ export class AuthController {
   @Get('profile')
   getProfile(@Request() req) {
     console.log(req);
-    return req.kanker;
+    return req.user;
   }
 }

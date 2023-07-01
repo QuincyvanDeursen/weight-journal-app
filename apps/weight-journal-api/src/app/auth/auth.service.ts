@@ -17,7 +17,11 @@ export class AuthService {
       throw new UnauthorizedException();
     }
     //Payload is the data that will be encrypted in the JWT
-    const payload = { sub: user.userId, username: user.username };
+    const payload = {
+      sub: user.userId,
+      username: user.username,
+      roles: user.roles,
+    };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
