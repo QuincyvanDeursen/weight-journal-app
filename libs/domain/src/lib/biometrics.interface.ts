@@ -3,8 +3,8 @@ export interface Biometrics {
   height: number;
   weight: number;
   PAL?: number;
-  BMR: number;
-  BMI: number;
+  BMR?: number;
+  BMI?: number;
   TDEE?: number;
   birthdate: Date;
 }
