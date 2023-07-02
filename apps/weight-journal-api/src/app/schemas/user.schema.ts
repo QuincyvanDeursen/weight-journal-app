@@ -74,11 +74,18 @@ export class User {
     },
   })
   prefix: string;
-
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    enum: Object.values(Gender),
+    type: String,
+  })
   gender: Gender;
 
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    type: [String],
+    enum: Object.values(Role),
+  })
   roles: Role[];
 
   @Prop({ required: true })
