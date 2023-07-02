@@ -11,4 +11,5 @@ export interface User {
   roles: Role[];
   profilePicture?: string;
   biometrics?: Biometrics;
+  metricUnits: boolean;
 }

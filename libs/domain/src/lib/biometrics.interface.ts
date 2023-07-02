@@ -6,5 +6,5 @@ export interface Biometrics {
   BMR: number;
   BMI: number;
   TDEE?: number;
-  birthDate: Date;
+  birthdate: Date;
 }
