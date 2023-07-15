@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //components
 
 //Angular MAeterial
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -18,12 +19,7 @@ import { MatListModule } from '@angular/material/list';
 import { LandingComponent } from './pages/landing/landing.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LandingComponent,
-    LandingComponent,
-    LandingComponent,
-  ],
+  declarations: [AppComponent, LandingComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
@@ -35,6 +31,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
   ],
 
   providers: [],

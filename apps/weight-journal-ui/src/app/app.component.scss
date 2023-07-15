@@ -1,46 +1,52 @@
 .drawer-container {
-  overflow: auto;
+
+
   background: #1a1a1a;
 }
 
 .main-content {
   min-height: 100vh;
-  background: #1a1a1a;
+  background-image: linear-gradient(to top, #030030eb, #3764edac);
+  color: #ffffff;
 }
 
 .drawer {
-  background: #141414 89%;
-  border-right-width: 2px;
+  position: fixed;
+  top: 59px; /* Adjust this value based on the height of your navbar */
+  left: 0;
+  max-height: calc(100vh - 60px); /* Subtract the height of the navbar from the viewport height */
+  background: #141414;
+  border-right-width: 1px;
   border-right-style: solid;
-  border-image: linear-gradient(to bottom, #030030, #02d36f) 1;
-}
-
-mat-list-item {
-  background: #1b1b1b;
-  padding: 5px;
-  border-radius: 5px;
+  border-image: linear-gradient(to bottom, #030030, #3764ed) 1;
 }
 
 .drawer-button {
   color: white !important;
   background: #1b1b1b !important;
-}
-
-.login-button {
-  color: white !important;
-  background: #141414 89% !important;
-  border-width: 1px;
-  border-style: solid;
-  border-color: (#02d36f);
+  width: 100%;
+  padding: 20px;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #3764ed;
 }
 
 .toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 60px;
   background: #000000;
   color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-image: linear-gradient(to right, #030030, #3764ed) 1;
+  z-index: 999; /* Add a higher z-index value */
 }
 
 .health-label {
-  color: #02d36f;
+  color: #3764ed;
 }
 
 .spacer {
