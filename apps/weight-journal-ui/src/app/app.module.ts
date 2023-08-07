@@ -6,8 +6,10 @@ import { appRoutes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //components
-
-//Angular MAeterial
+import { LoginDialogComponent } from './pages/loginDialog/login-dialog.component';
+import { RegisterDialogComponent } from './pages/registerDialog/register-dialog.component';
+import { LandingComponent } from './pages/landing/landing.component';
+//Angular Material
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,10 +18,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { LandingComponent } from './pages/landing/landing.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { HttpClientModule } from '@angular/common/http';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent],
+  declarations: [
+    AppComponent,
+    LandingComponent,
+    LoginDialogComponent,
+    RegisterDialogComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
@@ -32,6 +48,15 @@ import { LandingComponent } from './pages/landing/landing.component';
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    HttpClientModule,
   ],
 
   providers: [],

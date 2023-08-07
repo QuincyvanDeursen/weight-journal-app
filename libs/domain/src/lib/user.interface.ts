@@ -7,9 +7,9 @@ export interface User {
   password: string;
   firstName: string;
   lastName: string;
-  prefix?: string;
-  roles: Role[];
+  birthdate: Date;
+  roles?: Role[];
   profilePicture?: string;
   biometrics?: Biometrics;
-  metricUnits: boolean;
+  metricUnits?: boolean;
 }

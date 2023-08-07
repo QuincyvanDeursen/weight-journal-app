@@ -2,10 +2,6 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Gender, Role } from '@weight-journal-app/domain';
 import { HydratedDocument } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import {
-  Biometrics as BiometricClassFromSchema,
-  Biometrics,
-} from './biometrics.schema';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -21,6 +17,7 @@ export class User {
       },
       message: 'Invalid email address',
     },
+    maxlength: 100,
   })
   email: string;
 
@@ -34,8 +31,9 @@ export class User {
         );
       },
       message:
-        'Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, and a minimum of 8 characters in length',
+        'Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, and a minimum of 8 and maximum of 30 characters',
     },
+    maxlength: 30,
   })
   password: string;
 
@@ -43,11 +41,12 @@ export class User {
     required: true,
     validate: {
       validator: (value: string) => {
-        // Check if the value contains letters only
-        return /^[a-zA-Z]+$/.test(value);
+        // Check if the value contains only letters, spaces, hyphens, and apostrophes
+        return /^[\p{L}\s'-]+$/u.test(value);
       },
-      message: 'First name should contain only letters',
+      message: 'First name should contain only letters, spaces, hyphens, and apostrophes',
     },
+    maxlength: 50,
   })
   firstName: string;
 
@@ -55,50 +54,51 @@ export class User {
     required: true,
     validate: {
       validator: (value: string) => {
-        // Check if the value contains letters only
-        return /^[a-zA-Z ]+$/.test(value);
+        // Check if the value contains only letters, spaces, hyphens, and apostrophes
+        return /^[\p{L}\s'-]+$/u.test(value);
       },
-      message: 'Last name should contain only letters',
+      message: 'Last name should contain only letters, spaces, hyphens, and apostrophes',
     },
+    maxlength: 50,
   })
   lastName: string;
 
   @Prop({
-    required: false,
+    required: true,
     validate: {
-      validator: (value: string) => {
-        // Check if the value contains letters only
-        return /^[a-zA-Z ]+$/.test(value);
+      validator: (value: Date) => {
+        // Check if the value is a valid date and not a future date
+        if (isNaN(value.getTime()) || value > new Date() || value < getMinDate()) {
+          return false;
+        }
+        return true;
       },
-      message: 'prefix should contain only letters',
+      message: 'Birthdate should be a valid date and cannot be a future date or earlier than 100 years from now',
     },
   })
-  prefix: string;
+  birthdate: Date;
+
   @Prop({
-    required: true,
+    required: false,
     enum: Object.values(Gender),
     type: String,
   })
   gender: Gender;
 
   @Prop({
-    required: true,
+    required: false,
     type: [String],
     enum: Object.values(Role),
+    default: [Role.USER],
   })
   roles: Role[];
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   metricUnits: boolean;
 
   @Prop({ required: false })
   profilePicture: string;
 
-  @Prop({
-    required: false,
-    ref: BiometricClassFromSchema.name,
-  })
-  biometrics: Biometrics;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -115,3 +115,11 @@ UserSchema.pre<User>('save', async function (next) {
     return next(err);
   }
 });
+
+
+// Helper function to get the minimum date allowed for the birth date
+function getMinDate(): Date {
+  const currentDate = new Date();
+  currentDate.setFullYear(currentDate.getFullYear() - 100);
+  return currentDate;
+}

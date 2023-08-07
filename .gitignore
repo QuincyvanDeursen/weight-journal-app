@@ -42,3 +42,7 @@ Thumbs.db
 
 # security
 apps/weight-journal-api/src/environments/
+
+apps/weight-journal-ui/src/environments/environment.prod.ts
+
+apps/weight-journal-ui/src/environments/environment.ts

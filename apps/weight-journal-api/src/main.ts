@@ -11,7 +11,7 @@ import { ApiResponseInterceptor } from './app/shared/api.response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.enableCors();
   //swagger
   const config = new DocumentBuilder()
     .setTitle('Weight Journal API')

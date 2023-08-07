@@ -18,10 +18,10 @@
       fitness goals!
     </P>
     <div class="col-12 text-center pt-5">
-      <button class="login-button" mat-raised-button>
-        <mat-icon>assignment</mat-icon> register
+      <button class="button" mat-raised-button (click)="openRegisterDialog()">
+        <mat-icon>assignment</mat-icon> Register
       </button>
-      <button class="login-button ms-3" mat-raised-button>
+      <button class="button ms-3" mat-raised-button (click)="openLoginDialog()">
         <mat-icon>account_circle</mat-icon> Login
       </button>
     </div>

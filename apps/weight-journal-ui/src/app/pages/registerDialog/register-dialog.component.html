@@ -1,0 +1,58 @@
+<div class="register-dialog">
+  <div mat-dialog-content class="dialog-content">
+
+      <form [formGroup]="registerFormGroup">
+        <div class="d-flex flex-column">
+      <mat-form-field>
+        <mat-label>Firstname</mat-label>
+        <input matInput type="text" placeholder="Jimmy" formControlName="firstName" required maxlength="50">
+        <mat-error *ngIf="registerFormGroup.get('firstName')?.invalid">{{getFirstNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input matInput type="text" placeholder="Doe" formControlName="lastName" required maxlength="50">
+        <mat-error *ngIf="registerFormGroup.get('lastName')?.invalid">{{getLastNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Birthdate</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="birthDate" required>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="registerFormGroup.get('birthDate')?.invalid">{{getBirthDateErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input matInput type="email" placeholder="pat@example.com" formControlName="email"  maxlength="100" required>
+        <mat-error *ngIf="registerFormGroup.get('email')?.invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="big-error-form-field">
+        <mat-label>Enter a password</mat-label>
+   
+        <input matInput type="password" placeholder="**********" formControlName="password" required maxlength="30">
+        <mat-error *ngIf="registerFormGroup.get('password')?.invalid">{{getPasswordErrorMessage()}}</mat-error>
+  
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Repeat your password</mat-label>
+        <input matInput type="password" placeholder="**********" formControlName="passwordConfirm" required>
+        <mat-error *ngIf="registerFormGroup.get('passwordConfirm')?.invalid">{{getPasswordConfirmErrorMessage()}}</mat-error>
+        
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <div class="row mx-auto">
+        <div class="col-6">
+          <button mat-button mat-dialog-close class="cancel-button">Cancel</button>
+        </div>
+        <div class="col-6">
+          <button mat-button (click)="register()" class="register-button" [disabled]="isButtonDisabled">Register</button>
+        </div>
+      </div>
+    </div>
+    </form>
+    <div *ngIf="isRegisterLoading"><mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar></div>
+
+  </div>
+
+</div>

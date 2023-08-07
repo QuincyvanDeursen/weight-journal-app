@@ -1,8 +1,14 @@
-import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  HttpCode,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 import { LoginDto, User } from '@weight-journal-app/domain';
-import { APIResponse } from '../shared/api.response';
 
 @Controller('auth')
 export class AuthController {
@@ -16,9 +22,10 @@ export class AuthController {
         loginDto.username,
         loginDto.password
       );
-      return APIResponse.success('Login successful', result);
+      return result;
     } catch (error) {
-      return APIResponse.error('Login failed', error);
+
+      return error;
     }
   }
 
@@ -26,9 +33,10 @@ export class AuthController {
   async createUser(@Body() user: User) {
     try {
       const newUser: User = await this.authService.register(user);
-      return APIResponse.success('Creating user successful', newUser);
+      return { message: 'User created successfully', data: newUser };
     } catch (error) {
-      return APIResponse.error('Creating user failed', error);
+      console.log(error);
+      throw error;
     }
   }
 }

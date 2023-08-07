@@ -1,9 +1,13 @@
-.login-button {
+.button {
   color: white !important;
   background: #141414 89% !important;
   border-width: 1px;
   border-style: solid;
   border-color: (#3764ed);
+}
+
+.button:hover {
+  color: #3764ed !important;
 }
 
 .section1 {

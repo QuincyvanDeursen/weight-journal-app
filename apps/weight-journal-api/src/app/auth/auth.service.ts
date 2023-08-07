@@ -1,5 +1,6 @@
 import {
   HttpException,
+  HttpStatus,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -44,9 +45,10 @@ export class AuthService {
         access_token: await this.jwtService.signAsync(payload),
       };
     } catch (error) {
-      throw (
+      console.log(
         'Error | signIn() | API | auth.service.ts | message: ' + error.message
       );
+      throw error.message;
     }
   }
 
@@ -54,11 +56,10 @@ export class AuthService {
     try {
       // lowercase all relevant fields
       user.email = user.email.toLowerCase();
-      user.prefix = user.prefix.toLowerCase();
       user.firstName = user.firstName.toLowerCase();
       user.lastName = user.lastName.toLowerCase();
 
-      //Saving user to DB
+      // Saving user to DB
       const newUser = new this.userModel(user);
       const savedUser = await newUser.save();
 
@@ -66,9 +67,16 @@ export class AuthService {
       const { password, ...userWithoutPassword } = savedUser.toObject();
       return userWithoutPassword;
     } catch (error) {
-      throw (
-        'Error | Register() | API | auth.service.ts | message: ' + error.message
+      console.log(
+        'Error | Register() | API | auth.service.ts | message: ' + error
       );
+      if (error.code === 11000) {
+        throw new HttpException(
+          'Email already in use.',
+          HttpStatus.BAD_REQUEST
+        );
+      }
+      throw new HttpException(`Registration failed: ${error.message}`, HttpStatus.BAD_REQUEST);
     }
   }
 }
