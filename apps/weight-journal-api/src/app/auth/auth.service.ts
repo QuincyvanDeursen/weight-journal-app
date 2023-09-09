@@ -48,7 +48,7 @@ export class AuthService {
       console.log(
         'Error | signIn() | API | auth.service.ts | message: ' + error.message
       );
-      throw error.message;
+      throw error;
     }
   }
 

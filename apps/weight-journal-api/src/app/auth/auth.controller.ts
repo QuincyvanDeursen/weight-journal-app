@@ -4,7 +4,6 @@ import {
   Post,
   HttpCode,
   HttpStatus,
-  HttpException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
@@ -24,8 +23,8 @@ export class AuthController {
       );
       return result;
     } catch (error) {
-
-      return error;
+      console.log(error);
+      throw error;
     }
   }
 

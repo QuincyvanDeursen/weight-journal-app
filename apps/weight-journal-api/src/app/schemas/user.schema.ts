@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Gender, Role } from '@weight-journal-app/domain';
+import { Role } from '@weight-journal-app/domain';
 import { HydratedDocument } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
@@ -77,13 +77,6 @@ export class User {
     },
   })
   birthdate: Date;
-
-  @Prop({
-    required: false,
-    enum: Object.values(Gender),
-    type: String,
-  })
-  gender: Gender;
 
   @Prop({
     required: false,

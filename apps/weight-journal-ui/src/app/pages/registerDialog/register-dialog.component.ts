@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription, debounceTime } from 'rxjs';
+import { Subscription, debounceTime, finalize } from 'rxjs';
 import {
   birthDateValidator,
   emailPatternValidator,
@@ -33,7 +33,7 @@ export class RegisterDialogComponent implements OnInit, OnDestroy {
   isRegisterLoading = false;
   private formChangesSubscription: Subscription | undefined;
   private passwordChangesSubscription: Subscription | undefined;
-  private reigsterSubscription: Subscription | undefined;
+  private registerSubscription: Subscription | undefined;
 
   // The constructor is used to create the form group and subscribe to its value changes
 
@@ -52,8 +52,8 @@ export class RegisterDialogComponent implements OnInit, OnDestroy {
       this.passwordChangesSubscription.unsubscribe();
     }
 
-    if (this.reigsterSubscription) {
-      this.reigsterSubscription.unsubscribe();
+    if (this.registerSubscription) {
+      this.registerSubscription.unsubscribe();
     }
   }
 
@@ -147,29 +147,38 @@ export class RegisterDialogComponent implements OnInit, OnDestroy {
   ///////////////////////////////////////////////////////////////////////////////////
   register() {
     if (this.registerFormGroup.valid) {
-      //show loading indicator
+      // Show loading indicator
       this.isRegisterLoading = true;
-      //get form values
+      
+      // Get form values
       const user = this.createUserFromForm();
-
+  
       // Subscribe to the register request
-
-      this.reigsterSubscription = this.authService.register(user).subscribe({
+      // TODO: Remove the setTimeout() function
+      setTimeout(() => {
+      this.registerSubscription = this.authService.register(user)
+      .pipe(
+        finalize(() => {
+          this.isRegisterLoading = false; // Hide loading indicator when request completes
+          this.cdRef.detectChanges(); // Trigger change detection if needed
+        })
+      )
+      .subscribe({
         next: () => {
           this.snackBarUtil.openSuccessSnackBar('Registration successful');
         },
         error: (e) => {
           this.snackBarUtil.openErrorSnackBar(
-            e.data
+            e.error.message || 'Registration failed'
           );
-          console.log(e);
         },
         complete: () => {
-          this.isRegisterLoading = false;
-          this.cdRef.detectChanges();
+          console.log('Register request completed');
         },
       });
+      }, 3000);
     }
+    
   }
 
   private createUserFromForm(): User {

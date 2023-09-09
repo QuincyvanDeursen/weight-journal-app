@@ -1,4 +1,3 @@
-import { Biometrics } from './biometrics.interface';
 import { Role } from './role.enum';
 
 export interface User {
@@ -9,7 +8,4 @@ export interface User {
   lastName: string;
   birthdate: Date;
   roles?: Role[];
-  profilePicture?: string;
-  biometrics?: Biometrics;
-  metricUnits?: boolean;
 }
