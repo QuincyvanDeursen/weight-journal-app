@@ -1,0 +1,50 @@
+.button {
+  color: white !important;
+  background: #141414 89% !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: (#3764ed);
+}
+
+.button:hover {
+  color: #3764ed !important;
+}
+
+.section1 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-right: 15%;
+  padding-left: 15%;
+  background-image: linear-gradient(to left, #030030f6, #3764eddf),
+    url('/assets/images/landing_bg_website_description.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: #3764ed 1px solid;
+}
+
+.section2 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-right: 15%;
+  padding-left: 15%;
+  background-image: linear-gradient(to right, #030030, #3764eddf),
+    url('/assets/images/landing_bg_tracker_description.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: #3764ed 1px solid;
+}
+
+.section3 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-right: 15%;
+  padding-left: 15%;
+  background-image: linear-gradient(to left, #030030f6, #3764eddf),
+    url('/assets/images/landing_bg_calculator_description.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: #3764ed 1px solid;
+}

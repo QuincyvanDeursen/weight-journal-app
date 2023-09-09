@@ -5,10 +5,19 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
 import { UserModule } from '../user/user.module';
 import { environment } from '../../environments/environment';
+import { MongooseModule } from '@nestjs/mongoose';
+import {
+  User as UserClassFromSchema,
+  UserSchema,
+} from '../schemas/user.schema';
 
 @Module({
   imports: [
     UserModule,
+    MongooseModule.forFeature([
+      { name: UserClassFromSchema.name, schema: UserSchema },
+    ]),
+
     JwtModule.register({
       global: true,
       secret: environment.JWT_SECRET,

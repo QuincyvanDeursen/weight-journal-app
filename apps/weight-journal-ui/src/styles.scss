@@ -30,3 +30,51 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   background-color: $grey;
 }
+
+
+
+
+
+// styling for dialogs to remove the default border radius
+.my-dialog .mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: 0px;
+}
+
+//styling to make more space between the error message and the form field, this is needed for error messages that are too long.
+//this is currently used to inform the user about a weak password in the register dialog.
+mat-form-field.big-error-form-field.ng-invalid.ng-touched {
+  animation: move-down;
+  animation-duration: 0.3s;
+  margin-bottom: 65px;
+}
+
+@keyframes move-down {
+  from {margin-bottom: 0;}
+  to {margin-bottom:65px;}
+}
+
+
+
+// custom for the scrollbars
+/* For WebKit-based browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #184631;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #4af1a6, #39c05b);
+  border-radius: 4px;
+}
+
+/* For Firefox */
+/* Note: In newer versions of Firefox (64+), you can use scrollbar-width property */
+/* For older versions, the styling won't work for the main content area */
+/* It's limited to elements with overflow set (e.g., divs, textarea) */
+html {
+  scrollbar-color: #888 #f1f1f1;
+  scrollbar-width: thin;
+}

@@ -4,9 +4,10 @@ import {
   ExecutionContext,
   CallHandler,
 } from '@nestjs/common';
+import { ApiResponse } from '@weight-journal-app/domain';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ApiResponse } from './api.response';
+
 
 @Injectable()
 export class ApiResponseInterceptor implements NestInterceptor {

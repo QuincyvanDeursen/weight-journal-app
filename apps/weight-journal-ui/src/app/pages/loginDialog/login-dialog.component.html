@@ -1,0 +1,64 @@
+<div class="logindialog">
+  <div mat-dialog-content>
+    <form [formGroup]="loginFormGroup">
+      <div class="d-flex flex-column">
+        <mat-form-field>
+          <mat-label>Enter your email</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="pat@example.com"
+            formControlName="email"
+            maxlength="100"
+            required
+          />
+          <mat-error *ngIf="loginFormGroup.get('email')?.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Enter a password</mat-label>
+
+          <input
+            matInput
+            type="password"
+            placeholder="**********"
+            formControlName="password"
+            required
+            maxlength="30"
+          />
+          <mat-error *ngIf="loginFormGroup.get('password')?.invalid">{{
+            getPasswordErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-error *ngIf="invalidLogin">Wrong email or password.</mat-error>
+
+      <div mat-dialog-actions>
+        <div class="row mx-auto">
+          <div class="col-6">
+            <button mat-button mat-dialog-close class="cancel-button">
+              Cancel
+            </button>
+          </div>
+          <div class="col-6">
+            <button
+              mat-button
+              (click)="login()"
+              class="login-button"
+              [disabled]="isButtonDisabled"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isLoginLoading">
+        <mat-progress-bar
+          mode="indeterminate"
+          color="accent"
+        ></mat-progress-bar>
+      </div>
+    </form>
+  </div>
+</div>

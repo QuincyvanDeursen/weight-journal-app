@@ -1,0 +1,39 @@
+.logindialog{
+    background-color: #141414;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #3764ed;
+    padding: 30px;
+}
+
+.login-button {
+    color: white !important;
+    background: #141414 89% !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: (#3764ed);
+  }
+
+.login-button:hover {
+    color: #3764ed !important;	
+
+  }
+
+  .login-button[disabled] {
+    border-color: #383838;
+
+    color: #383838 !important;
+  }
+
+
+  .cancel-button {
+    color: white !important;
+    background: #141414 89% !important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: (#383838);
+  }
+
+  .cancel-button:hover {
+    background: #383838 89% !important;
+  }
